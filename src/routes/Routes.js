@@ -12,31 +12,32 @@ export default function RouteWrapper({
 }) {
   const signed = false;
 
-  if(!signed && isPrivate) {
-    return <Redirect to="/" />
+  if (!signed && isPrivate) {
+    return <Redirect to="/" />;
   }
 
-  if(signed && !isPrivate) {
-    return <Redirect to="/deliveries" />
+  if (signed && !isPrivate) {
+    return <Redirect to="/deliveries" />;
   }
 
-  const Layout = signed ? DefaultLayout: AuthLayout;
+  const Layout = signed ? DefaultLayout : AuthLayout;
 
   return (
     <Route
       {...rest}
-      render={props => (
+      render={(props) => (
         <Layout>
           <Component {...props} />
         </Layout>
       )}
     />
-  )
-};
+  );
+}
 
 RouteWrapper.propTypes = {
   isPrivate: PropTypes.bool,
-  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
+    .isRequired,
 };
 
 RouteWrapper.defaultProps = {

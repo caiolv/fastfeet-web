@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import {darken} from 'polished';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
   max-width: 360px;
   text-align: center;
-  background: #FFF;
+  background: #fff;
   padding: 60px 30px;
   border-radius: 4px;
   box-shadow: 0px 0px 10px #00000033;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     }
 
     input {
-      background: #FFF;
+      background: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;
       height: 44px;
@@ -39,7 +39,7 @@ export const Container = styled.div`
       font-size: 16px;
       margin: 0 0 10px;
 
-      &::placeholder{
+      &::placeholder {
         color: #999;
       }
     }
@@ -49,14 +49,14 @@ export const Container = styled.div`
       height: 44px;
       background: #7d48e3;
       font-weight: bold;
-      color: #FFF;
+      color: #fff;
       border: 0;
       border-radius: 4px;
       font-size: 14px;
       transition: background 0.2s;
 
       &:hover {
-      background: ${darken(0.03, '#7d48e3')};
+        background: ${darken(0.03, '#7d48e3')};
       }
     }
   }

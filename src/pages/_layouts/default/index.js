@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Wrapper} from './styles.js';
+import { Wrapper } from './styles.js';
 
 export default function DefaultLayout({ children }) {
   return <Wrapper>{children}</Wrapper>;
@@ -9,4 +9,4 @@ export default function DefaultLayout({ children }) {
 
 DefaultLayout.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};
