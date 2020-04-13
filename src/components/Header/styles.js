@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
 export const Container = styled.div`
   background: #fff;
@@ -53,10 +54,14 @@ export const Profile = styled.div`
     }
 
     button {
-      background: transparent;
+      background: none;
       border: 0;
       color: #de3b3b;
       font-size: 14px;
+
+      &:hover {
+        color: ${lighten(0.08, '#de3b3b')};
+      }
     }
   }
 `;
