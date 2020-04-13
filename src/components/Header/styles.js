@@ -37,23 +37,24 @@ export const Content = styled.div`
 `;
 
 export const Profile = styled.div`
-  display: flex;
   margin-left: 20px;
   padding-left: 20px;
 
   div {
-    text-align: right;
+    display: flex;
     margin-right: 10px;
+    flex-direction: column;
+    align-items: flex-end;
 
     strong {
       font-size: 14px;
-      display: block;
       color: #666;
       margin-bottom: 5px;
     }
 
-    a {
-      display: block;
+    button {
+      background: transparent;
+      border: 0;
       color: #de3b3b;
       font-size: 14px;
     }
