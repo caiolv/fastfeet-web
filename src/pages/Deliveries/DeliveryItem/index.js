@@ -10,7 +10,6 @@ export default function DeliveryItem({ delivery }) {
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
-    console.tron.log(visible);
     setVisible(!visible);
   }
 

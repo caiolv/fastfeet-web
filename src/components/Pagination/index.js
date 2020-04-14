@@ -25,6 +25,6 @@ export default function Pagination({ page, handlePage }) {
 }
 
 Pagination.propTypes = {
-  page: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
   handlePage: PropTypes.func.isRequired,
 };
