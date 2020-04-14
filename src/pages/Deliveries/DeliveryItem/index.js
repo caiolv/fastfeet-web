@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MdMoreHoriz, MdDeleteForever, MdCreate } from 'react-icons/md';
 
-import Actions from '~/components/Actions';
+// import Actions from '~/components/Actions';
 
-import { TableRow } from './styles';
+import { TableRow, Actions } from './styles';
 
 export default function DeliveryItem({ delivery }) {
   const [visible, setVisible] = useState(false);
@@ -47,7 +47,7 @@ export default function DeliveryItem({ delivery }) {
           <MdMoreHoriz size={20} color="#C6C6C6" />
         </button>
 
-        <Actions visible={false}>
+        <Actions visible={visible}>
           <button type="button">
             <MdCreate size={15} color="#4D85EE" />
             <span>Editar</span>
