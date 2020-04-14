@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { MdAdd, MdSearch } from 'react-icons/md';
+import PageHeader from '~/components/PageHeader';
+import SearchInput from '~/components/SearchInput';
+import AddButton from '~/components/AddButton';
+import Table from '~/components/Table';
 
 import DeliveryItem from './DeliveryItem';
 
@@ -25,22 +28,11 @@ export default function Deliveries() {
   }, [page]);
   return (
     <Container>
-      <header>
-        <strong>Gerenciando encomendas</strong>
-
-        <div>
-          <section>
-            <MdSearch size={20} color="#999" />
-            <input type="text" placeholder="Buscar por encomendas" />
-          </section>
-
-          <button type="button">
-            <MdAdd size={25} color="#FFF" />
-            <span>Cadastrar</span>
-          </button>
-        </div>
-      </header>
-      <DeliveriesTable>
+      <PageHeader title="Gerenciar encomendas">
+        <SearchInput placeholder="Buscar por encomendas" />
+        <AddButton />
+      </PageHeader>
+      <Table>
         <thead>
           <tr>
             <th>ID</th>
@@ -58,7 +50,7 @@ export default function Deliveries() {
             <DeliveryItem key={delivery.id} delivery={delivery} />
           ))}
         </tbody>
-      </DeliveriesTable>
+      </Table>
     </Container>
   );
 }
