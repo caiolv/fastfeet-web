@@ -7,6 +7,7 @@ export const TableRow = styled.tr`
   td {
     padding: 12px 20px;
     border-radius: 4px;
+    position: relative;
 
     span {
       text-align: left;

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MdMoreHoriz } from 'react-icons/md';
+import { MdMoreHoriz, MdDeleteForever, MdCreate } from 'react-icons/md';
+
+import Actions from '~/components/Actions';
 
 import { TableRow } from './styles';
 
 export default function DeliveryItem({ delivery }) {
+  const [visible, setVisible] = useState(false);
+
+  function handleToggleVisible() {
+    console.tron.log(visible);
+    setVisible(!visible);
+  }
+
   return (
     <TableRow>
       <td>
@@ -34,9 +43,20 @@ export default function DeliveryItem({ delivery }) {
         <span>{delivery.status}</span>
       </td>
       <td>
-        <button type="button">
+        <button type="button" onClick={handleToggleVisible}>
           <MdMoreHoriz size={20} color="#C6C6C6" />
         </button>
+
+        <Actions visible={false}>
+          <button type="button">
+            <MdCreate size={15} color="#4D85EE" />
+            <span>Editar</span>
+          </button>
+          <button type="button">
+            <MdDeleteForever size={15} color="#DE3B3B" />
+            <span>Excluir</span>
+          </button>
+        </Actions>
       </td>
     </TableRow>
   );
