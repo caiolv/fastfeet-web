@@ -4,12 +4,13 @@ import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
 import AddButton from '~/components/AddButton';
 import Table from '~/components/Table';
+import Pagination from '~/components/Pagination';
 
 import DeliveryItem from './DeliveryItem';
 
 import api from '~/services/api';
 
-import { Container, DeliveriesTable } from './styles';
+import { Container } from './styles';
 
 export default function Deliveries() {
   const [deliveries, setDeliveries] = useState([]);
@@ -17,7 +18,9 @@ export default function Deliveries() {
 
   async function loadDeliveries() {
     const response = await api.get('/deliveries', {
-      params: {},
+      params: {
+        page,
+      },
     });
     console.tron.log(response.data);
     setDeliveries(response.data);
@@ -26,6 +29,12 @@ export default function Deliveries() {
   useEffect(() => {
     loadDeliveries();
   }, [page]);
+
+  async function handlePage(action) {
+    await setPage(action === 'back' ? page - 1 : page + 1);
+    loadDeliveries();
+  }
+
   return (
     <Container>
       <PageHeader title="Gerenciar encomendas">
@@ -51,6 +60,7 @@ export default function Deliveries() {
           ))}
         </tbody>
       </Table>
+      <Pagination page={page} handlePage={handlePage} />
     </Container>
   );
 }
