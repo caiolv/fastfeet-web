@@ -15,30 +15,37 @@ import { Container } from './styles';
 export default function Deliveries() {
   const [deliveries, setDeliveries] = useState([]);
   const [page, setPage] = useState(1);
-
-  async function loadDeliveries() {
-    const response = await api.get('/deliveries', {
-      params: {
-        page,
-      },
-    });
-    console.tron.log(response.data);
-    setDeliveries(response.data);
-  }
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
+    async function loadDeliveries() {
+      const response = await api.get('/deliveries', {
+        params: {
+          page,
+          search,
+        },
+      });
+      setDeliveries(response.data);
+    }
+
     loadDeliveries();
-  }, [page]);
+  }, [page, search]);
 
   async function handlePage(action) {
-    await setPage(action === 'back' ? page - 1 : page + 1);
-    loadDeliveries();
+    setPage(action === 'back' ? page - 1 : page + 1);
+  }
+
+  function handleSearch(value) {
+    setSearch(value);
   }
 
   return (
     <Container>
       <PageHeader title="Gerenciar encomendas">
-        <SearchInput placeholder="Buscar por encomendas" />
+        <SearchInput
+          placeholder="Buscar por encomendas"
+          handleSearch={handleSearch}
+        />
         <AddButton />
       </PageHeader>
       <Table>
