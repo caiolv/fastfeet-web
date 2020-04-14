@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MdMoreHoriz, MdDeleteForever, MdCreate } from 'react-icons/md';
 
-import Actions from '~/components/Actions';
+import ActionsMenu from '~/components/ActionsMenu';
 
-import { TableRow } from './styles';
+import { TableRow, Status } from './styles';
 
 export default function DeliveryItem({ delivery }) {
   const [visible, setVisible] = useState(false);
@@ -40,14 +40,16 @@ export default function DeliveryItem({ delivery }) {
         <span>{delivery.recipient.state}</span>
       </td>
       <td>
-        <span>{delivery.status}</span>
+        <Status palette={STATUS_COLOR[delivery.status]}>
+          {delivery.status}
+        </Status>
       </td>
       <td>
         <button type="button" onClick={handleToggleVisible}>
           <MdMoreHoriz size={20} color="#C6C6C6" />
         </button>
 
-        <Actions visible={visible}>
+        <ActionsMenu visible={visible}>
           <button type="button">
             <MdCreate size={15} color="#4D85EE" />
             <span>Editar</span>
@@ -56,7 +58,7 @@ export default function DeliveryItem({ delivery }) {
             <MdDeleteForever size={15} color="#DE3B3B" />
             <span>Excluir</span>
           </button>
-        </Actions>
+        </ActionsMenu>
       </td>
     </TableRow>
   );
@@ -79,4 +81,23 @@ DeliveryItem.propTypes = {
     }),
     status: PropTypes.string.isRequired,
   }).isRequired,
+};
+
+const STATUS_COLOR = {
+  PENDENTE: {
+    color: '#C1BC35',
+    background: '#F0F0DF',
+  },
+  RETIRADA: {
+    color: '#4D85EE',
+    background: '#BAD2FF',
+  },
+  ENTREGUE: {
+    color: '#2CA42B',
+    background: '#DFF0DF',
+  },
+  CANCELADA: {
+    color: '#DE3B3B',
+    background: '#FAB0B0',
+  },
 };
