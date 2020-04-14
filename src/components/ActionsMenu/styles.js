@@ -33,6 +33,7 @@ export const Container = styled.div`
     width: 100%;
     outline: 0;
     border: 0;
+    background: transparent;
 
     svg {
       margin-right: 8px;

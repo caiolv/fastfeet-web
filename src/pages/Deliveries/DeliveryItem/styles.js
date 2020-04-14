@@ -31,6 +31,7 @@ export const TableRow = styled.tr`
       width: 100%;
       outline: 0;
       border: 0;
+      background: transparent;
     }
 
     &:nth-child(7) {
