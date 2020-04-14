@@ -8,6 +8,6 @@ export default function Actions({ children, visible }) {
 }
 
 Actions.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   visible: PropTypes.bool.isRequired,
 };

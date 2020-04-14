@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MdMoreHoriz, MdDeleteForever, MdCreate } from 'react-icons/md';
 
-// import Actions from '~/components/Actions';
+import Actions from '~/components/Actions';
 
-import { TableRow, Actions } from './styles';
+import { TableRow } from './styles';
 
 export default function DeliveryItem({ delivery }) {
   const [visible, setVisible] = useState(false);
