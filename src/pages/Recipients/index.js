@@ -43,9 +43,9 @@ export default function Recipients() {
 
   return (
     <Container>
-      <PageHeader title="Gerenciar encomendas">
+      <PageHeader title="Gerenciar destinatários">
         <SearchInput
-          placeholder="Buscar por encomendas"
+          placeholder="Buscar por destinatários"
           handleSearch={handleSearch}
         />
         <Button
