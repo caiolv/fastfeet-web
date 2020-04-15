@@ -4,10 +4,30 @@ import PropTypes from 'prop-types';
 import ActionsMenu from '~/components/ActionsMenu';
 import TableRow from '~/components/Table/TableRow';
 import TableData from '~/components/Table/TableData';
+import CourierAvatar from '~/components/CourierAvatar';
 
 import history from '~/services/history';
 
-import { Status } from './styles';
+import { Status, CourierContainer } from './styles';
+
+const STATUS_COLOR = {
+  PENDENTE: {
+    color: '#C1BC35',
+    background: '#F0F0DF',
+  },
+  RETIRADA: {
+    color: '#4D85EE',
+    background: '#BAD2FF',
+  },
+  ENTREGUE: {
+    color: '#2CA42B',
+    background: '#DFF0DF',
+  },
+  CANCELADA: {
+    color: '#DE3B3B',
+    background: '#FAB0B0',
+  },
+};
 
 export default function DeliveryItem({ delivery }) {
   const [visible, setVisible] = useState(false);
@@ -29,15 +49,10 @@ export default function DeliveryItem({ delivery }) {
         <span>{delivery.recipient.name}</span>
       </TableData>
       <TableData>
-        <div>
-          {delivery.courier.avatar && (
-            <img
-              src={delivery.courier.avatar.url}
-              alt={delivery.courier.name}
-            />
-          )}
+        <CourierContainer>
+          <CourierAvatar courier={delivery.courier} />
           <span>{delivery.courier.name}</span>
-        </div>
+        </CourierContainer>
       </TableData>
       <TableData>
         <span>{delivery.recipient.city}</span>
@@ -57,20 +72,6 @@ export default function DeliveryItem({ delivery }) {
           handleEdit={() => handleEdit(delivery.id)}
           handleDelete={() => {}}
         />
-        {/* <button type="button" onClick={handleToggleVisible}>
-          <MdMoreHoriz size={20} color="#C6C6C6" />
-        </button>
-
-        <ActionsMenu visible={visible}>
-          <button type="button" onClick={() => handleEdit(delivery.id)}>
-            <MdCreate size={15} color="#4D85EE" />
-            <span>Editar</span>
-          </button>
-          <button type="button">
-            <MdDeleteForever size={15} color="#DE3B3B" />
-            <span>Excluir</span>
-          </button>
-        </ActionsMenu> */}
       </TableData>
     </TableRow>
   );
@@ -93,23 +94,4 @@ DeliveryItem.propTypes = {
     }),
     status: PropTypes.string.isRequired,
   }).isRequired,
-};
-
-const STATUS_COLOR = {
-  PENDENTE: {
-    color: '#C1BC35',
-    background: '#F0F0DF',
-  },
-  RETIRADA: {
-    color: '#4D85EE',
-    background: '#BAD2FF',
-  },
-  ENTREGUE: {
-    color: '#2CA42B',
-    background: '#DFF0DF',
-  },
-  CANCELADA: {
-    color: '#DE3B3B',
-    background: '#FAB0B0',
-  },
 };

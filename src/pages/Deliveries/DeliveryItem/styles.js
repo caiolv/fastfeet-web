@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const CourierContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  span {
+    margin-left: 5px;
+  }
+`;
+
 export const Status = styled.strong`
   background: ${(props) => props.palette.background};
   padding: 5px 7px 5px 23px;

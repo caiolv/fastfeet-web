@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   margin-top: 34px;
-  margin-bottom: 22px;
+  /* margin-bottom: 12px; */
 
   strong {
     color: #444444;
