@@ -25,7 +25,6 @@ export default function Form() {
   }, [id]);
 
   async function handleSubmit(data) {
-    console.tron.log(data);
     try {
       if (id)
         await api.put(`/couriers/${id}`, {

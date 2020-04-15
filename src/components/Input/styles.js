@@ -3,7 +3,7 @@ import { Input } from '@rocketseat/unform';
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
+  width: ${(props) => props.width};
   flex-direction: column;
   margin-bottom: 10px;
 

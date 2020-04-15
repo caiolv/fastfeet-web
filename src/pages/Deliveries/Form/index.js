@@ -1,6 +1,8 @@
-import React from 'react';
-import FormHeader from '~/components/FormHeader';
-import Unform from '~/components/Unform';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import UnForm from '~/components/UnForm';
 import Input from '~/components/Input';
 
 import api from '~/services/api';
@@ -9,28 +11,63 @@ import history from '~/services/history';
 import { Container } from './styles';
 
 export default function Form() {
+  const { id } = useParams();
+  const [delivery, setDelivery] = useState({});
+
+  useEffect(() => {
+    async function loadDelivery() {
+      const response = await api.get(`/deliveries/${id}`);
+      setDelivery(response.data);
+    }
+
+    if (id) loadDelivery();
+  }, [id]);
+
+  async function handleSubmit(data) {
+    try {
+      if (id)
+        await api.put(`/deliveries/${id}`, {
+          ...data,
+        });
+      else
+        await api.post(`/deliveries`, {
+          ...data,
+        });
+
+      history.push('/deliveries');
+    } catch (e) {
+      const errorMessage = 'Verifique os dados.';
+
+      toast.error(
+        id
+          ? `Erro ao atualizar entregador. ${errorMessage}`
+          : `Erro ao cadastrar entregador. ${errorMessage}`
+      );
+    }
+  }
+
   return (
     <Container>
-      <FormHeader
-        title="Cadastro de encomendas"
+      <UnForm
+        title={id ? 'Edição de encomendas' : 'Cadastro de encomendas'}
         handleBack={() => history.goBack()}
-      />
-
-      <Unform>
+        initialData={delivery}
+        onSubmit={handleSubmit}
+      >
         <section>
           <Input
             label="Destinatário"
-            name="product"
+            name="recipient"
             placeholder="Ludwig van Beethoven"
           />
-          <Input label="Entregador" name="product" placeholder="John Doe" />
+          <Input label="Entregador" name="courier" placeholder="John Doe" />
         </section>
         <Input
           label="Nome do produto"
           name="product"
           placeholder="Yamaha SX7"
         />
-      </Unform>
+      </UnForm>
     </Container>
   );
 }
