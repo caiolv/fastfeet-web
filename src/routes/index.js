@@ -7,6 +7,7 @@ import DeliveryForm from '../pages/Deliveries/Form';
 import SignIn from '../pages/SignIn';
 import Couriers from '../pages/Couriers';
 import CourierForm from '../pages/Couriers/Form';
+import Recipients from '../pages/Recipients';
 
 export default function Routes() {
   return (
@@ -28,6 +29,7 @@ export default function Routes() {
         component={CourierForm}
         isPrivate
       />
+      <Route path="/recipients" exact component={Recipients} isPrivate />
     </Switch>
   );
 }
