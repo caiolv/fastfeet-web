@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { MdAdd } from 'react-icons/md';
 
 import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
-import AddButton from '~/components/AddButton';
+import Button from '~/components/Button';
 import Table from '~/components/Table';
 import Pagination from '~/components/Pagination';
 
 import DeliveryItem from './DeliveryItem';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { Container } from './styles';
 
@@ -46,7 +48,11 @@ export default function Deliveries() {
           placeholder="Buscar por encomendas"
           handleSearch={handleSearch}
         />
-        <AddButton />
+        <Button
+          text="CADASTRAR"
+          icon={<MdAdd size={25} color="#FFF" />}
+          onClick={() => history.push('/deliveries/new')}
+        />
       </PageHeader>
       <Table>
         <thead>

@@ -12,7 +12,7 @@ export const Container = styled.button.attrs({
   align-items: center;
 
   svg {
-    margin-right: 5px;
+    margin-right: 2px;
   }
 
   span {

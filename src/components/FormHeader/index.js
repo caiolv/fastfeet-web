@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdCheck, MdArrowBack } from 'react-icons/md';
+import { MdCheck, MdChevronLeft } from 'react-icons/md';
 
 import Button from '../Button';
 
@@ -15,7 +15,7 @@ export default function FormHeader({ title, handleBack, handleSubmit }) {
         <Button
           text="VOLTAR"
           secondary
-          icon={<MdArrowBack size={25} color="#FFF" />}
+          icon={<MdChevronLeft size={25} color="#FFF" />}
           onClick={handleBack}
         />
         <Button
