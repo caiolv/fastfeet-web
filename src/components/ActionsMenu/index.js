@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MdMoreHoriz, MdDeleteForever, MdCreate } from 'react-icons/md';
 
-import { Container } from './styles';
+import { Container, MainButton } from './styles';
 
 export default function Actions({
   visible,
@@ -12,9 +12,9 @@ export default function Actions({
 }) {
   return (
     <>
-      <button type="button" onClick={handleToggleVisible}>
+      <MainButton type="button" onClick={handleToggleVisible}>
         <MdMoreHoriz size={20} color="#C6C6C6" />
-      </button>
+      </MainButton>
 
       <Container visible={visible}>
         <button type="button" onClick={handleEdit}>

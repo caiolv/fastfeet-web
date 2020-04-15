@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const MainButton = styled.button`
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: transparent;
+`;
+
 export const Container = styled.div`
   position: absolute;
   width: 150px;

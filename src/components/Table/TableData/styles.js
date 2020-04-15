@@ -10,25 +10,6 @@ export const Container = styled.td`
     color: #666666;
   }
 
-  & + div {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      margin-right: 5px;
-    }
-  }
-
-  & > button {
-    width: 100%;
-    outline: 0;
-    border: 0;
-    background: transparent;
-  }
-
   &:first-of-type {
     border-radius: 4px 0 0 4px;
   }
