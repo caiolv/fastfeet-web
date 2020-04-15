@@ -8,6 +8,7 @@ import SignIn from '../pages/SignIn';
 import Couriers from '../pages/Couriers';
 import CourierForm from '../pages/Couriers/Form';
 import Recipients from '../pages/Recipients';
+import RecipientForm from '../pages/Recipients/Form';
 
 export default function Routes() {
   return (
@@ -30,6 +31,13 @@ export default function Routes() {
         isPrivate
       />
       <Route path="/recipients" exact component={Recipients} isPrivate />
+      <Route path="/recipients/new" exact component={RecipientForm} isPrivate />
+      <Route
+        path="/recipients/edit/:id"
+        exact
+        component={RecipientForm}
+        isPrivate
+      />
     </Switch>
   );
 }
