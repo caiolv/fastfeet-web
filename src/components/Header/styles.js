@@ -28,6 +28,9 @@ export const Content = styled.div`
       font-weight: bold;
       color: #444;
       text-transform: uppercase;
+      & + a {
+        margin-left: 20px;
+      }
     }
   }
 

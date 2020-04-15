@@ -21,6 +21,7 @@ export default function Header() {
         <nav>
           <img src={logo} alt="FastFeet" />
           <Link to="/deliveries">Encomendas</Link>
+          <Link to="/couriers">Entregadores</Link>
         </nav>
 
         <aside>
