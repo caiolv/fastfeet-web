@@ -6,6 +6,7 @@ import Deliveries from '../pages/Deliveries';
 import DeliveryForm from '../pages/Deliveries/Form';
 import SignIn from '../pages/SignIn';
 import Couriers from '../pages/Couriers';
+import CourierForm from '../pages/Couriers/Form';
 
 export default function Routes() {
   return (
@@ -20,13 +21,13 @@ export default function Routes() {
         isPrivate
       />
       <Route path="/couriers" exact component={Couriers} isPrivate />
-      {/* <Route path="/deliveries/new" exact component={CouriersForm} isPrivate /> */}
-      {/* <Route
-        path="/deliveries/edit/:id"
+      <Route path="/couriers/new" exact component={CourierForm} isPrivate />
+      <Route
+        path="/couriers/edit/:id"
         exact
-        component={DeliveryForm}
+        component={CourierForm}
         isPrivate
-      /> */}
+      />
     </Switch>
   );
 }

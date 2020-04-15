@@ -13,7 +13,7 @@ export default function Form() {
     <Container>
       <FormHeader
         title="Cadastro de encomendas"
-        handleBack={() => history.push('/deliveries')}
+        handleBack={() => history.goBack()}
       />
 
       <Unform>
