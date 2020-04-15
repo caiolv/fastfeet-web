@@ -33,7 +33,7 @@ export default function Form() {
         await api.post(`/recipients`, {
           ...data,
         });
-
+      toast.success('Cadastro de destinatário realizado com sucesso!');
       history.push('/recipients');
     } catch (e) {
       const errorMessage = 'Verifique os dados.';

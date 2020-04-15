@@ -35,6 +35,7 @@ export default function Form() {
           ...data,
         });
 
+      toast.success('Cadastro de entregador realizado com sucesso!');
       history.push('/couriers');
     } catch (e) {
       const errorMessage = 'Verifique os dados.';

@@ -34,14 +34,15 @@ export default function Form() {
           ...data,
         });
 
+      toast.success('Cadastro de encomenda realizado com sucesso!');
       history.push('/deliveries');
     } catch (e) {
       const errorMessage = 'Verifique os dados.';
 
       toast.error(
         id
-          ? `Erro ao atualizar entregador. ${errorMessage}`
-          : `Erro ao cadastrar entregador. ${errorMessage}`
+          ? `Erro ao atualizar entrega. ${errorMessage}`
+          : `Erro ao cadastrar entrega. ${errorMessage}`
       );
     }
   }
