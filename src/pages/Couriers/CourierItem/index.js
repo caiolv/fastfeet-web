@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ActionsMenu from '~/components/ActionsMenu';
 import TableRow from '~/components/Table/TableRow';
 import TableData from '~/components/Table/TableData';
+import CourierAvatar from '~/components/CourierAvatar';
 
 import history from '~/services/history';
 
@@ -15,7 +16,7 @@ export default function CourierItem({ courier }) {
   }
 
   function handleEdit(id) {
-    history.push(`/courier/edit/${id}`);
+    history.push(`/couriers/edit/${id}`);
   }
 
   return (
@@ -24,11 +25,12 @@ export default function CourierItem({ courier }) {
         <span>#{courier.id < 10 ? `0${courier.id}` : courier.id}</span>
       </TableData>
       <TableData>
-        <div>
+        <CourierAvatar courier={courier} />
+        {/* <div>
           {courier.avatar && (
             <img src={courier.avatar.url} alt={courier.name} />
           )}
-        </div>
+        </div> */}
       </TableData>
       <TableData>
         <span>{courier.name}</span>
