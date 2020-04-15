@@ -6,7 +6,6 @@ export const TableRow = styled.tr`
 
   td {
     padding: 12px 20px;
-    border-radius: 4px;
     position: relative;
 
     span {
@@ -34,8 +33,13 @@ export const TableRow = styled.tr`
       background: transparent;
     }
 
-    &:nth-child(7) {
+    &:first-of-type {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-of-type {
       width: 10px;
+      border-radius: 0 4px 4px 0;
     }
   }
 `;
