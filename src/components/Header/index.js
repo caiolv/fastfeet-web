@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { signOut } from '~/store/modules/auth/actions';
 
@@ -20,9 +20,9 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="FastFeet" />
-          <Link to="/deliveries">Encomendas</Link>
-          <Link to="/couriers">Entregadores</Link>
-          <Link to="/recipients">Destinatários</Link>
+          <NavLink to="/deliveries">Encomendas</NavLink>
+          <NavLink to="/couriers">Entregadores</NavLink>
+          <NavLink to="/recipients">Destinatários</NavLink>
         </nav>
 
         <aside>

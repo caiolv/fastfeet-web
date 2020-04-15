@@ -26,10 +26,14 @@ export const Content = styled.div`
     a {
       font-size: 15px;
       font-weight: bold;
-      color: #444;
+      color: #999;
       text-transform: uppercase;
       & + a {
         margin-left: 20px;
+      }
+
+      &.active {
+        color: #444;
       }
     }
   }
