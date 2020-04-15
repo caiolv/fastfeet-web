@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.button.attrs({
-  type: 'button',
-})`
+export const Container = styled.button`
   display: flex;
   background: ${(props) => (props.secondary ? '#CCCCCC' : '#7d40e7')};
   border: 0;
