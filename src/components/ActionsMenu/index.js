@@ -30,10 +30,12 @@ export default function Actions({
             <span>Visualizar</span>
           </button>
         )}
-        <button type="button" onClick={handleEdit}>
-          <MdCreate size={15} color="#4D85EE" />
-          <span>Editar</span>
-        </button>
+        {handleEdit && (
+          <button type="button" onClick={handleEdit}>
+            <MdCreate size={15} color="#4D85EE" />
+            <span>Editar</span>
+          </button>
+        )}
         <button type="button" onClick={handleDelete}>
           <MdDeleteForever size={15} color="#DE3B3B" />
           <span>{deleteLabel}</span>
@@ -46,7 +48,8 @@ export default function Actions({
 Actions.propTypes = {
   visible: PropTypes.bool.isRequired,
   handleToggleVisible: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  handleEdit: PropTypes.func,
   handleDelete: PropTypes.func.isRequired,
   // eslint-disable-next-line react/require-default-props
   handleShow: PropTypes.func,

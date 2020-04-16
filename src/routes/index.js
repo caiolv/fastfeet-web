@@ -9,6 +9,7 @@ import Couriers from '../pages/Couriers';
 import CourierForm from '../pages/Couriers/Form';
 import Recipients from '../pages/Recipients';
 import RecipientForm from '../pages/Recipients/Form';
+import Problems from '../pages/Problems';
 
 export default function Routes() {
   return (
@@ -38,6 +39,7 @@ export default function Routes() {
         component={RecipientForm}
         isPrivate
       />
+      <Route path="/problems" exact component={Problems} isPrivate />
     </Switch>
   );
 }
