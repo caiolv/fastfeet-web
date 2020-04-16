@@ -45,7 +45,6 @@ export default function Form() {
   }, [id]);
 
   async function handleSubmit(data) {
-    console.tron.log(data);
     try {
       if (id)
         await api.put(`/deliveries/${id}`, {
@@ -79,15 +78,15 @@ export default function Form() {
       >
         <section>
           <SelectInput
-            nameId="recipient_id"
-            name="recipient"
+            name="recipient_id"
+            objectName="recipient"
             label="Destinatário"
             placeholder="Ludwig van Beethoven"
             data={recipients}
           />
           <SelectInput
-            nameId="courier_id"
-            name="courier"
+            name="courier_id"
+            objectName="courier"
             label="Entregador"
             placeholder="John Doe"
             data={couriers}

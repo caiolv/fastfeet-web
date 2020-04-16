@@ -6,38 +6,28 @@ import { Container, SelectContainer } from './styles';
 
 export default function SelectInput({
   name,
-  nameId,
+  objectName,
   label,
   data,
   placeholder,
+  ...rest
 }) {
   const selectRef = useRef(null);
-  const { registerField, defaultValue, fieldName } = useField(name);
-  console.tron.log(defaultValue);
-  const filter = (inputValue) => {
-    return data.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-
-  const promiseOptions = (inputValue) =>
-    new Promise((resolve) => {
-      resolve(filter(inputValue));
-    });
+  const { registerField, defaultValue, fieldName } = useField(objectName);
 
   useEffect(() => {
     registerField({
-      name: nameId,
+      name,
       ref: selectRef.current,
-      path: 'state.value',
+      path: 'state.value.value',
       getValue: (ref) => {
-        if (!ref.state.value.value) {
+        if (!ref.state.value) {
           return '';
         }
         return ref.state.value.value;
       },
     });
-  }, [nameId, name, registerField]);
+  }, [fieldName, name, registerField]);
 
   return (
     <Container>
@@ -46,10 +36,10 @@ export default function SelectInput({
       <SelectContainer
         options={data}
         placeholder={placeholder}
-        loadOptions={promiseOptions}
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
+        {...rest}
       />
     </Container>
   );
@@ -57,7 +47,7 @@ export default function SelectInput({
 
 SelectInput.propTypes = {
   name: PropTypes.string.isRequired,
-  nameId: PropTypes.string.isRequired,
+  objectName: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
