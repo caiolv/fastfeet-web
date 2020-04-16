@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
@@ -19,19 +20,19 @@ export default function Recipients() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    async function loadRecipients() {
-      const response = await api.get('/recipients', {
-        params: {
-          page,
-          search,
-        },
-      });
-      setRecipients(response.data);
-    }
+  async function loadRecipients() {
+    const response = await api.get('/recipients', {
+      params: {
+        page,
+        search,
+      },
+    });
+    setRecipients(response.data);
+  }
 
+  useEffect(() => {
     loadRecipients();
-  }, [page, search]);
+  }, [page, search]);// eslint-disable-line
 
   async function handlePage(action) {
     setPage(action === 'back' ? page - 1 : page + 1);
@@ -39,6 +40,21 @@ export default function Recipients() {
 
   function handleSearch(value) {
     setSearch(value);
+  }
+
+  async function handleDelete(id) {
+    const confirm = window.confirm('Deseja mesmo apagar o destinatário?');// eslint-disable-line
+    try {
+      if (confirm) {
+        await api.delete(`/recipients/${id}`);
+
+        toast.success('Destinatário removido com sucesso!');
+
+        loadRecipients();
+      }
+    } catch (e) {
+      toast.error('Houve um erro ao apagar o destinatário.');
+    }
   }
 
   return (
@@ -66,7 +82,11 @@ export default function Recipients() {
 
         <tbody>
           {recipients.map((recipient) => (
-            <RecipientItem key={recipient.id} recipient={recipient} />
+            <RecipientItem
+              key={recipient.id}
+              recipient={recipient}
+              handleDelete={handleDelete}
+            />
           ))}
         </tbody>
       </Table>

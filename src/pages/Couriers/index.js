@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
@@ -19,19 +20,19 @@ export default function Couriers() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    async function loadCouriers() {
-      const response = await api.get('/couriers', {
-        params: {
-          page,
-          search,
-        },
-      });
-      setCouriers(response.data);
-    }
+  async function loadCouriers() {
+    const response = await api.get('/couriers', {
+      params: {
+        page,
+        search,
+      },
+    });
+    setCouriers(response.data);
+  }
 
+  useEffect(() => {
     loadCouriers();
-  }, [page, search]);
+  }, [page, search]);// eslint-disable-line
 
   async function handlePage(action) {
     setCouriers([]);
@@ -40,6 +41,21 @@ export default function Couriers() {
 
   function handleSearch(value) {
     setSearch(value);
+  }
+
+  async function handleDelete(id) {
+    const confirm = window.confirm('Deseja mesmo apagar o entregador?');// eslint-disable-line
+    try {
+      if (confirm) {// eslint-disable-line
+        await api.delete(`/recipients/${id}`);
+
+        toast.success('Entregador removido com sucesso!');
+
+        loadCouriers();
+      }
+    } catch (e) {
+      toast.error('Houve um erro ao apagar o entregador.');
+    }
   }
 
   return (
@@ -68,7 +84,11 @@ export default function Couriers() {
 
         <tbody>
           {couriers.map((courier) => (
-            <CourierItem key={courier.id} courier={courier} />
+            <CourierItem
+              key={courier.id}
+              courier={courier}
+              handleDelete={handleDelete}
+            />
           ))}
         </tbody>
       </Table>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
@@ -19,17 +20,17 @@ export default function Deliveries() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    async function loadDeliveries() {
-      const response = await api.get('/deliveries', {
-        params: {
-          page,
-          search,
-        },
-      });
-      setDeliveries(response.data);
-    }
+  async function loadDeliveries() {
+    const response = await api.get('/deliveries', {
+      params: {
+        page,
+        search,
+      },
+    });
+    setDeliveries(response.data);
+  }
 
+  useEffect(() => {
     loadDeliveries();
   }, [page, search]);
 
@@ -39,6 +40,21 @@ export default function Deliveries() {
 
   function handleSearch(value) {
     setSearch(value);
+  }
+
+  async function handleDelete(id) {
+    const confirm = window.confirm('Deseja mesmo cancelar a entrega?');// eslint-disable-line
+    try {
+      if (confirm) {// eslint-disable-line
+        await api.delete(`/deliveries/${id}`);
+
+        toast.success('Entregada cancelada com sucesso!');
+
+        loadDeliveries();
+      }
+    } catch (e) {
+      toast.error('Houve um erro ao cancelar a entrega.');
+    }
   }
 
   return (
@@ -69,7 +85,11 @@ export default function Deliveries() {
 
         <tbody>
           {deliveries.map((delivery) => (
-            <DeliveryItem key={delivery.id} delivery={delivery} />
+            <DeliveryItem
+              key={delivery.id}
+              delivery={delivery}
+              handleDelete={handleDelete}
+            />
           ))}
         </tbody>
       </Table>

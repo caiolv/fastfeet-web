@@ -29,7 +29,7 @@ const STATUS_COLOR = {
   },
 };
 
-export default function DeliveryItem({ delivery }) {
+export default function DeliveryItem({ delivery, handleDelete }) {
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
@@ -40,37 +40,37 @@ export default function DeliveryItem({ delivery }) {
     history.push(`/deliveries/edit/${id}`);
   }
 
+  const { id, recipient, courier, status } = delivery;
+
   return (
     <TableRow>
       <TableData>
-        <span>#{delivery.id < 10 ? `0${delivery.id}` : delivery.id}</span>
+        <span>#{id < 10 ? `0${id}` : id}</span>
       </TableData>
       <TableData>
-        <span>{delivery.recipient.name}</span>
+        <span>{recipient.name}</span>
       </TableData>
       <TableData>
         <CourierContainer>
-          <CourierAvatar courier={delivery.courier} />
-          <span>{delivery.courier.name}</span>
+          <CourierAvatar courier={courier} />
+          <span>{courier.name}</span>
         </CourierContainer>
       </TableData>
       <TableData>
-        <span>{delivery.recipient.city}</span>
+        <span>{recipient.city}</span>
       </TableData>
       <TableData>
-        <span>{delivery.recipient.state}</span>
+        <span>{recipient.state}</span>
       </TableData>
       <TableData>
-        <Status palette={STATUS_COLOR[delivery.status]}>
-          {delivery.status}
-        </Status>
+        <Status palette={STATUS_COLOR[status]}>{status}</Status>
       </TableData>
       <TableData>
         <ActionsMenu
           visible={visible}
           handleToggleVisible={handleToggleVisible}
-          handleEdit={() => handleEdit(delivery.id)}
-          handleDelete={() => {}}
+          handleEdit={() => handleEdit(id)}
+          handleDelete={() => handleDelete(id)}
         />
       </TableData>
     </TableRow>
@@ -94,4 +94,5 @@ DeliveryItem.propTypes = {
     }),
     status: PropTypes.string.isRequired,
   }).isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };

@@ -7,7 +7,7 @@ import TableData from '~/components/Table/TableData';
 
 import history from '~/services/history';
 
-export default function RecipientItem({ recipient }) {
+export default function RecipientItem({ recipient, handleDelete }) {
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
@@ -36,7 +36,7 @@ export default function RecipientItem({ recipient }) {
           visible={visible}
           handleToggleVisible={handleToggleVisible}
           handleEdit={() => handleEdit(id)}
-          handleDelete={() => {}}
+          handleDelete={() => handleDelete(id)}
         />
       </TableData>
     </TableRow>
@@ -52,4 +52,5 @@ RecipientItem.propTypes = {
     street: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
   }).isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };

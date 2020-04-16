@@ -8,7 +8,7 @@ import CourierAvatar from '~/components/CourierAvatar';
 
 import history from '~/services/history';
 
-export default function CourierItem({ courier }) {
+export default function CourierItem({ courier, handleDelete }) {
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
@@ -19,46 +19,29 @@ export default function CourierItem({ courier }) {
     history.push(`/couriers/edit/${id}`);
   }
 
+  const { id, name, email } = courier;
+
   return (
     <TableRow>
       <TableData>
-        <span>#{courier.id < 10 ? `0${courier.id}` : courier.id}</span>
+        <span>#{id < 10 ? `0${id}` : id}</span>
       </TableData>
       <TableData>
         <CourierAvatar courier={courier} />
-        {/* <div>
-          {courier.avatar && (
-            <img src={courier.avatar.url} alt={courier.name} />
-          )}
-        </div> */}
       </TableData>
       <TableData>
-        <span>{courier.name}</span>
+        <span>{name}</span>
       </TableData>
       <TableData>
-        <span>{courier.email}</span>
+        <span>{email}</span>
       </TableData>
       <TableData>
         <ActionsMenu
           visible={visible}
           handleToggleVisible={handleToggleVisible}
-          handleEdit={() => handleEdit(courier.id)}
-          handleDelete={() => {}}
+          handleEdit={() => handleEdit(id)}
+          handleDelete={() => handleDelete(id)}
         />
-        {/* <button type="button" onClick={handleToggleVisible}>
-          <MdMoreHoriz size={20} color="#C6C6C6" />
-        </button>
-
-        <ActionsMenu visible={visible}>
-          <button type="button" onClick={() => handleEdit(delivery.id)}>
-            <MdCreate size={15} color="#4D85EE" />
-            <span>Editar</span>
-          </button>
-          <button type="button">
-            <MdDeleteForever size={15} color="#DE3B3B" />
-            <span>Excluir</span>
-          </button>
-        </ActionsMenu> */}
       </TableData>
     </TableRow>
   );
@@ -73,4 +56,5 @@ CourierItem.propTypes = {
       url: PropTypes.string,
     }),
   }).isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
