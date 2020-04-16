@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
 export const CourierContainer = styled.div`
   display: flex;

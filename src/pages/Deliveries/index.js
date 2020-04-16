@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
@@ -20,6 +22,18 @@ export default function Deliveries() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
+  function formatDates(data) {
+    return data.map((delivery) => ({
+      ...delivery,
+      startDateFormatted: delivery.start_date
+        ? format(parseISO(delivery.start_date), 'dd/MM/yyyy', { locale: pt })
+        : null,
+      endDateFormatted: delivery.end_date
+        ? format(parseISO(delivery.end_date), 'dd/MM/yyyy', { locale: pt })
+        : null,
+    }));
+  }
+
   async function loadDeliveries() {
     const response = await api.get('/deliveries', {
       params: {
@@ -27,7 +41,10 @@ export default function Deliveries() {
         search,
       },
     });
-    setDeliveries(response.data);
+
+    const data = formatDates(response.data);
+
+    setDeliveries(data);
   }
 
   useEffect(() => {
