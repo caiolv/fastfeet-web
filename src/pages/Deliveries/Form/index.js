@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import UnForm from '~/components/UnForm';
 import Input from '~/components/Input';
+import SelectInput from './SelectInput';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -13,6 +14,8 @@ import { Container } from './styles';
 export default function Form() {
   const { id } = useParams();
   const [delivery, setDelivery] = useState({});
+  const [couriers, setCouriers] = useState({});
+  const [recipients, setRecipients] = useState({});
 
   useEffect(() => {
     async function loadDelivery() {
@@ -20,10 +23,29 @@ export default function Form() {
       setDelivery(response.data);
     }
 
+    async function loadSelectData() {
+      const response = await Promise.all([
+        api.get('/couriers'),
+        api.get('/recipients'),
+      ]);
+
+      const [couriersData, recipientsData] = response.map((resp) => {
+        return resp.data.map((responseData) => ({
+          value: responseData.id,
+          label: responseData.name,
+        }));
+      });
+
+      setCouriers(couriersData);
+      setRecipients(recipientsData);
+    }
+
     if (id) loadDelivery();
+    loadSelectData();
   }, [id]);
 
   async function handleSubmit(data) {
+    console.tron.log(data);
     try {
       if (id)
         await api.put(`/deliveries/${id}`, {
@@ -56,12 +78,20 @@ export default function Form() {
         onSubmit={handleSubmit}
       >
         <section>
-          <Input
-            label="Destinatário"
+          <SelectInput
+            nameId="recipient_id"
             name="recipient"
+            label="Destinatário"
             placeholder="Ludwig van Beethoven"
+            data={recipients}
           />
-          <Input label="Entregador" name="courier" placeholder="John Doe" />
+          <SelectInput
+            nameId="courier_id"
+            name="courier"
+            label="Entregador"
+            placeholder="John Doe"
+            data={couriers}
+          />
         </section>
         <Input
           label="Nome do produto"
