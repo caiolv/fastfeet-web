@@ -8,7 +8,7 @@ export const Container = styled.div`
   section {
     display: flex;
 
-    div + div {
+    fieldset + fieldset {
       margin-left: 30px;
     }
   }

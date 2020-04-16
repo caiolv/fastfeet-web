@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
 
-import { Container, Select } from './styles';
+import { Container, SelectContainer } from './styles';
 
 export default function SelectInput({
   name,
@@ -12,8 +12,8 @@ export default function SelectInput({
   placeholder,
 }) {
   const selectRef = useRef(null);
-  const { registerField, defaultValue, fieldName } = useField(nameId);
-
+  const { registerField, defaultValue, fieldName } = useField(name);
+  console.tron.log(defaultValue);
   const filter = (inputValue) => {
     return data.filter((i) =>
       i.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -27,24 +27,24 @@ export default function SelectInput({
 
   useEffect(() => {
     registerField({
-      name: fieldName,
+      name: nameId,
       ref: selectRef.current,
-      path: 'select.state.value.value',
+      path: 'state.value',
       getValue: (ref) => {
-        if (!ref.select.state.value) {
+        if (!ref.state.value.value) {
           return '';
         }
-        return ref.select.state.value.value;
+        return ref.state.value.value;
       },
     });
-  }, [fieldName, name, registerField]);
+  }, [nameId, name, registerField]);
 
   return (
     <Container>
       <strong>{label}</strong>
-      <Select
-        cacheOptions
-        defaultOptions={data}
+
+      <SelectContainer
+        options={data}
         placeholder={placeholder}
         loadOptions={promiseOptions}
         defaultValue={defaultValue}
