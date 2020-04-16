@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import TextTruncate from 'react-text-truncate';
 
 import ActionsMenu from '~/components/ActionsMenu';
 import TableRow from '~/components/Table/TableRow';
@@ -27,7 +28,12 @@ export default function ProblemItem({ problem, handleDelete }) {
         <span>#{delivery.id < 10 ? `0${delivery.id}` : delivery.id}</span>
       </TableData>
       <TableData>
-        <span>{description}</span>
+        <TextTruncate
+          line={1}
+          element="span"
+          truncateText="…"
+          text={description}
+        />
       </TableData>
       <TableData>
         <ActionsMenu
@@ -48,13 +54,12 @@ export default function ProblemItem({ problem, handleDelete }) {
 }
 
 ProblemItem.propTypes = {
-  courier: PropTypes.shape({
+  problem: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    avatar: PropTypes.shape({
-      url: PropTypes.string,
-    }),
+    delivery: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+    description: PropTypes.string.isRequired,
   }).isRequired,
   handleDelete: PropTypes.func.isRequired,
 };

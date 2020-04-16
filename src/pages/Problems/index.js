@@ -65,17 +65,13 @@ export default function Problems() {
           placeholder="Buscar por problemas"
           handleSearch={handleSearch}
         />
-        <Button
-          text="CADASTRAR"
-          icon={<MdAdd size={25} color="#FFF" />}
-          onClick={() => history.push('/problems/new')}
-        />
       </PageHeader>
       <Table>
         <thead>
           <tr>
             <th>Encomenda</th>
             <th>Descrição</th>
+            <th>Ações</th>
           </tr>
         </thead>
 
