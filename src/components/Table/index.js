@@ -1,12 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import { Container } from './styles';
+const Table = styled.table`
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px;
 
-export default function Table({ children }) {
-  return <Container>{children}</Container>;
-}
+  thead {
+    th {
+      padding: 0 20px;
+      color: #444;
+      font-size: 16px;
+      text-align: left;
+    }
+  }
+`;
 
-Table.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+export default Table;
