@@ -4,7 +4,7 @@
 
 <h3 align="center">FastFeet - WEB</h3>
 
-<p align="center">Fronend Web do projeto de entrega de encomendas.</p>
+<p align="center">Frontend Web do projeto de entrega de encomendas.</p>
 
 ## 🚀 Instalação e execução
 1. Clone esse repositório
