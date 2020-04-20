@@ -49,6 +49,7 @@ export default function Deliveries() {
 
   useEffect(() => {
     loadDeliveries();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, search]);
 
   async function handlePage(action) {

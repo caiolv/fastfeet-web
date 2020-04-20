@@ -45,6 +45,7 @@ UnForm.propTypes = {
   title: PropTypes.string,
   handleBack: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   initialData: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 };

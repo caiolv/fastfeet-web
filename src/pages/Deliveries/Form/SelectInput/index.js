@@ -39,6 +39,7 @@ export default function SelectInput({
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </Container>

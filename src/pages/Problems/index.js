@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import PageHeader from '~/components/PageHeader';
 import SearchInput from '~/components/SearchInput';
-import Button from '~/components/Button';
 import Table from '~/components/Table';
 import Pagination from '~/components/Pagination';
 
 import ProblemItem from './ProblemItem';
 
 import api from '~/services/api';
-import history from '~/services/history';
 
 import { Container } from './styles';
 
