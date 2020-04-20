@@ -2,9 +2,9 @@
   <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
 </h1>
 
-<h3 align="center">FastFeet - API</h3>
+<h3 align="center">FastFeet - WEB</h3>
 
-<p align="center">Backend do projeto de entrega de encomendas.</p>
+<p align="center">Fronend Web do projeto de entrega de encomendas.</p>
 
 ## 🚀 Instalação e execução
 1. Clone esse repositório
