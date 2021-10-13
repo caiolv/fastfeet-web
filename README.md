@@ -4,6 +4,10 @@
 
 <h3 align="center">FastFeet - WEB</h3>
 
+<h1 align="center">
+  <img alt="FastFeet DEMO" src="../assets/demo.gif?raw=true" />
+</h1>
+
 <p align="center">Frontend Web do projeto de entrega de encomendas.</p>
 
 ## 🚀 Instalação e execução
